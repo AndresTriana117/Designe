@@ -37,7 +37,7 @@ function App() {
             Localización | GPSSMSTRCK |
           </Typography>
           <p>
-            Latitud:{location.lat} | Longitud:{location.lng} | {location.fecha}
+            Latitud:{location.lat} | Longitud:{location.lng} | Fecha:{new Date(location.fecha).toLocaleString()} |
           </p>
         </Toolbar>
       </AppBar>
