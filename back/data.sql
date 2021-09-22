@@ -4,5 +4,6 @@ CREATE TABLE Locations (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     latitude DECIMAL(10,7),
     longitude DECIMAL(10,7),
-    fecha VARCHAR(50)
+    fecha VARCHAR(300),
+    hora VARCHAR(300),
 );
