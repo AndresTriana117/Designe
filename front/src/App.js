@@ -13,17 +13,19 @@ function App() {
     lat: 10.9877224,
     lng: -74.7885593,
     fecha: 2021,
+    hora: 2021,
   });
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const { lat, lng, fecha } = await consulta(
-        "http://3.23.99.99:4000/mensaje"
+      const { lat, lng, fecha, hora } = await consulta(
+        "http://localhots:4000/mensaje"
       );
       setLocation({
         lat,
         lng,
         fecha,
+        hora,
       });
     }, 5000);
     return () => clearInterval(interval);
@@ -37,7 +39,7 @@ function App() {
             Localización | GPSSMSTRCK |
           </Typography>
           <p>
-            Latitud:{location.lat} | Longitud:{location.lng} | Fecha:{new Date(location.fecha).toLocaleString()} |
+            Latitud:{location.lat} | Longitud:{location.lng} | Fecha:{location.fecha} | Horaa:{location.hora} |
           </p>
         </Toolbar>
       </AppBar>
