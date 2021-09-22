@@ -5,5 +5,5 @@ CREATE TABLE Locations (
     latitude DECIMAL(10,7),
     longitude DECIMAL(10,7),
     fecha VARCHAR(300),
-    hora VARCHAR(300),
+    hora VARCHAR(300)
 );
