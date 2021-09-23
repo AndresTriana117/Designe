@@ -28,7 +28,7 @@ function CustomMap({ data, poly }) {
   return (
     <MapContainer
       style={{ width: "100%", height: "100vh" }}
-      center={center}
+      center={Marker}
       zoom={13}
       className={classes.root}
     >
