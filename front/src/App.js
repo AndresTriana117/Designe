@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(async () => {
       const { lat, lng, fecha, hora } = await consulta(
-        "http://localhots:4000/mensaje"
+        "http://'IP publica':4000/mensaje"
       );
       setLocation({
         lat,
