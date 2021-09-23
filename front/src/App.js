@@ -13,7 +13,7 @@ function App() {
     lat: 10.9877224,
     lng: -74.7885593,
     fecha: 2021,
-    hora: 2021,
+    hora: 2000,
   });
 
   useEffect(() => {
