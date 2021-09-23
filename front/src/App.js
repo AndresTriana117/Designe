@@ -1,8 +1,7 @@
+import React, { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { useState, useEffect } from "react";
 import { consulta } from "./services";
 import styles from "./App.css";
 
@@ -16,10 +15,16 @@ function App() {
     hora: 2000,
   });
 
+  const [init, setInit] = useState(false);
+
+  const [poly, setPoly] = useState([{ lat: 10.9877224, lng: -74.7885593 }]);
+
   useEffect(() => {
+    if (location.hora === 2000) setInit((c) => !c);
+
     const interval = setInterval(async () => {
       const { lat, lng, fecha, hora } = await consulta(
-        "http://'IP publica':4000/mensaje"
+        "http://ippublica:puerto/mensaje"
       );
       setLocation({
         lat,
@@ -27,7 +32,9 @@ function App() {
         fecha,
         hora,
       });
-    }, 5000);
+
+      !init ? setPoly([{ lat, lng }]) : setPoly((c) => [...c, { lat, lng }]);
+    }, 500);
     return () => clearInterval(interval);
   }, [location]);
 
@@ -39,12 +46,13 @@ function App() {
             Localización | GPSSMSTRCK |
           </Typography>
           <p>
-            Latitud:{location.lat} | Longitud:{location.lng} | Fecha:{location.fecha} | Hora:{location.hora} |
+            Latitud:{location.lat} | Longitud:{location.lng} | Fecha:
+            {location.fecha} | Hora:{location.hora} |
           </p>
         </Toolbar>
       </AppBar>
       <div className={styles.Container}>
-        <CustomMap data={[location.lat, location.lng, 3]} />
+        <CustomMap data={[location.lat, location.lng, 3]} poly={poly} />
       </div>
     </div>
   );
