@@ -1,6 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { MapContainer, TileLayer, Marker, Popup , Polyline} from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+} from "react-leaflet";
 import L from "leaflet";
 
 const useStyles = makeStyles((theme) => ({
@@ -11,18 +17,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const center = [10.9877224, -74.788559, 3];
-const coords=[]
-var last_element={}
-const icon = L.icon({ iconUrl: "/images/marker-icon.png" });
+const icon = L.icon({
+  iconUrl: "/images/marker-icon.png",
+  iconAnchor: L.point(12, 40),
+});
 
-function CustomMap({ data }) {
+function CustomMap({ data, poly }) {
   const classes = useStyles();
-  var position = [data[0], data[1]];
-  coords.push(position);
-  last_element = coords.slice();
-  // delete last_element1[0];
-  // delete last_element1[1];
-  
+
   return (
     <MapContainer
       style={{ width: "100%", height: "100vh" }}
@@ -41,10 +43,8 @@ function CustomMap({ data }) {
           <p>Longitud:{data[1]}</p>
         </Popup>
       </Marker>
-      <Polyline
-        positions={[[last_element]]}
-        color={'black'}
-      />
+
+      <Polyline positions={poly} />
     </MapContainer>
   );
 }
