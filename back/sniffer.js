@@ -24,12 +24,14 @@ sniffer.on("message", async (msg, rinfo) => {
   let mes = msg.toString();
 
   let latitud = mes.split(";")[0];
-  let num_latitud = latitud.split(":")[1];
+  let num_latitud = latitud.split("=")[1];
   let longitud = mes.split(";")[1];
-  let num_longitud = longitud.split(":")[1];
+  let num_longitud = longitud.split("=")[1];
   let fecha1 = mes.split(";")[2];
-  let fecha = fecha1.split(":")[1];
-  const query = `INSERT INTO Locations (latitude,longitude,fecha) values (${num_latitud},${num_longitud},'${fecha}')`;
+  let fecha = fecha1.split("=")[1];
+  let hora1 = mes.split(";")[3];
+  let hora = hora1.split("=")[1];
+  const query = `INSERT INTO Locations (latitude,longitude,fecha,hora) values (${num_latitud},${num_longitud},'${fecha}','${hora}')`;
   connection.query(query, function (err, results) {
     if (err) {
       console.log(err.stack);
