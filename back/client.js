@@ -4,7 +4,7 @@ var udp = require("dgram");
 var client = udp.createSocket("udp4");
 
 //buffer msg
-var data = Buffer.from("Latitude:10.92;Longitude:-74.77;Fecha:2021");
+var data = Buffer.from("Latitude:10.92;Longitude:-74.77;Fecha:2021;Hora:2000");
 
 client.on("message", function (msg, info) {
   console.log("Data received from server : " + msg.toString());
@@ -17,7 +17,7 @@ client.on("message", function (msg, info) {
 });
 
 //sending msg
-client.send(data, 5000, "3.23.99.99", function (error) {
+client.send(data, 5000, "ip publica", function (error) {
   if (error) {
     client.close();
   } else {
